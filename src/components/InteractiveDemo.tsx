@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrainCircuit, Loader2, AlertTriangle, Wand2, Image as ImageIcon } from 'lucide-react';
 
+// Forzar build: cambio menor para asegurar despliegue correcto
+
 // The list of OH card image URLs provided by the user.
 const imageUrls = [
   'https://images.squarespace-cdn.com/content/v1/63937c55c3c2e84a13a3ede9/6ecef946-b9e4-446f-b6cf-59730fa0e7ef/84.jpg?format=300w',

@@ -1,3 +1,4 @@
+// Forzar build: cambio menor para asegurar despliegue correcto
 import React from 'react';
 import { Trophy } from 'lucide-react';
 

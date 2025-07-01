@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { BrainCircuit, Loader2, AlertTriangle, Wand2, Image as ImageIcon, Info } from 'lucide-react';
 
 // The list of OH card image URLs provided by the user.
@@ -130,10 +129,6 @@ const InteractiveDemo: React.FC = () => {
       setError('Por favor, introduce una palabra o frase.');
       return;
     }
-    if (!process.env.API_KEY) {
-      setError('La clave API no está configurada. No se puede contactar al servicio de IA.');
-      return;
-    }
 
     setIsLoading(true);
     setError(null);
@@ -141,32 +136,35 @@ const InteractiveDemo: React.FC = () => {
     setSelectedImageUrl(null);
 
     try {
-      const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-      const systemInstruction = "Eres un facilitador sabio y empático de Cartas OH. Tu objetivo es proporcionar una reflexión breve y perspicaz basada en la entrada de un usuario, simulando la experiencia de sacar una carta de palabra. Tu reflexión debe ser lo suficientemente abierta como para conectar la palabra que generas con una imagen simbólica que se mostrará al usuario por separado. Responde siempre en español y únicamente con un objeto JSON válido.";
-      const prompt = `Basado en la siguiente situación o sentimiento del usuario: "${userInput}", genera una experiencia de Cartas OH. Devuelve un objeto JSON con dos claves: 1. "palabra": Una sola palabra poderosa y evocadora relacionada con la entrada. 2. "reflexion": Un párrafo breve (2-3 frases) que conecte la "palabra" y una imagen simbólica aleatoria con la situación del usuario, invitando a la introspección.`;
-      
-      const response = await model.generateContent({
-        contents: prompt,
-        config: {
-          systemInstruction: systemInstruction,
-          responseMimeType: 'application/json',
-        }
+      const response = await fetch('/api/gemini', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompt: userInput,
+          systemInstruction: "Eres un facilitador sabio y empático de Cartas OH. Tu objetivo es proporcionar una reflexión breve y perspicaz basada en la entrada de un usuario, simulando la experiencia de sacar una carta de palabra. Tu reflexión debe ser lo suficientemente abierta como para conectar la palabra que generas con una imagen simbólica que se mostrará al usuario por separado. Responde siempre en español y únicamente con un objeto JSON válido."
+        })
       });
-      
-      let jsonStr = response.text.trim();
+      const data = await response.json();
+      // Procesa la respuesta de Gemini
+      // Extrae el texto generado (ajusta según el formato de respuesta)
+      let jsonStr = '';
+      try {
+        jsonStr = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || '';
+      } catch {
+        jsonStr = '';
+      }
       const fenceRegex = /^```(\w*)?\s*\n?(.*?)\n?\s*```$/s;
       const match = jsonStr.match(fenceRegex);
       if (match && match[2]) {
         jsonStr = match[2].trim();
       }
-      
-      const parsedData: DemoResult = JSON.parse(jsonStr);
+      if (!jsonStr) throw new Error('Respuesta vacía de Gemini');
+      const parsedData = JSON.parse(jsonStr);
       setResult(parsedData);
 
       const randomImage = imageUrls[Math.floor(Math.random() * imageUrls.length)];
       setSelectedImageUrl(randomImage);
-      
+
       const newAttempts = attempts + 1;
       setAttempts(newAttempts);
       try {

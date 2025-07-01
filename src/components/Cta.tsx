@@ -1,38 +1,6 @@
 import React, { useEffect } from 'react';
 import { Phone } from 'lucide-react';
 
-const PaypalButton: React.FC = () => {
-  useEffect(() => {
-    const renderPaypal = () => {
-      // @ts-ignore
-      const w: any = window;
-      if (w.paypal) {
-        w.paypal.HostedButtons({
-          hostedButtonId: "A9A69DGQTJMFE"
-        }).render("#paypal-container-A9A69DGQTJMFE");
-      }
-    };
-    if (!document.getElementById('paypal-sdk')) {
-      const script = document.createElement('script');
-      script.src = "https://www.paypal.com/sdk/js?client-id=BAA4lz8UNfCxgze9nsnUqpXK2pwKSqxS2KsFHxp7hoLp0mYZJJJcaEFLqoigy1UiObcu496B4rs1kL2zLk&components=hosted-buttons&disable-funding=venmo&currency=MXN";
-      script.id = "paypal-sdk";
-      script.async = true;
-      script.crossOrigin = "anonymous";
-      script.onload = renderPaypal;
-      document.body.appendChild(script);
-    } else {
-      renderPaypal();
-    }
-  }, []);
-  return (
-    <div
-      id="paypal-container-A9A69DGQTJMFE"
-      className="mt-6 flex justify-center"
-      style={{ minWidth: 320, maxWidth: 400, margin: '0 auto' }}
-    ></div>
-  );
-};
-
 const Cta: React.FC = () => {
     return (
         <section id="inscripciones" className="py-10 sm:py-20 md:py-24 bg-gradient-to-br from-sky-100 to-white text-gray-800">

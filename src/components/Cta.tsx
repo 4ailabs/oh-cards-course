@@ -27,7 +27,7 @@ const PaypalButton: React.FC = () => {
       }
     }
   }, []);
-  return <div id="paypal-container-A9A69DGQTJMFE" className="mt-6 flex justify-center"></div>;
+  return <div id="paypal-container-A9A69DGQTJMFE" className="mt-6 flex justify-center" style={{ minWidth: 320, minHeight: 120 }}></div>;
 };
 
 const Cta: React.FC = () => {

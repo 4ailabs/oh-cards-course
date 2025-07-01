@@ -22,6 +22,11 @@ export default async function handler(req: any, res: any) {
     });
 
     const data = await response.json();
+    console.log('Respuesta completa de Gemini:', JSON.stringify(data));
+    if (!data || !data.candidates || !data.candidates.length || !data.candidates[0].content || !data.candidates[0].content.parts || !data.candidates[0].content.parts.length) {
+      console.error('Respuesta vacía o inesperada de Gemini:', JSON.stringify(data));
+      return res.status(500).json({ error: 'Respuesta vacía o inesperada de Gemini', details: data });
+    }
     res.status(200).json(data);
   } catch (error) {
     console.error(error);

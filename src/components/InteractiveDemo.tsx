@@ -90,6 +90,8 @@ const imageUrls = [
 type DemoResult = {
   palabra: string;
   reflexion: string;
+  pregunta_1?: string;
+  pregunta_2?: string;
 };
 
 const InteractiveDemo: React.FC = () => {
@@ -140,7 +142,7 @@ const InteractiveDemo: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           prompt: userInput,
-          systemInstruction: "Eres un facilitador sabio y empático de Cartas OH. Tu objetivo es proporcionar una reflexión breve y perspicaz basada en la entrada de un usuario, simulando la experiencia de sacar una carta de palabra. Tu reflexión debe ser lo suficientemente abierta como para conectar la palabra que generas con una imagen simbólica que se mostrará al usuario por separado. Responde siempre en español y únicamente con un objeto JSON válido."
+          systemInstruction: "Eres un facilitador sabio y empático de Cartas OH. Tu objetivo es proporcionar una reflexión breve y perspicaz basada en la entrada de un usuario, simulando la experiencia de sacar una carta de palabra. Devuelve SIEMPRE un objeto JSON válido con tres campos: 'pregunta_1' (siempre: ¿Qué ves en la imagen?), 'pregunta_2' (siempre: ¿Qué sientes al observarla?) y 'reflexion' (la reflexión generada). Responde siempre en español y únicamente con un objeto JSON válido."
         })
       });
       const data = await response.json();
@@ -277,7 +279,13 @@ const InteractiveDemo: React.FC = () => {
                         {/* Reflection */}
                         <div className="bg-white p-4 rounded-md border border-gray-200 shadow-sm mb-2">
                             <h3 className="font-bold text-xl text-[#5D4333] mb-3">Reflexión para ti:</h3>
-                            <p className="text-gray-700 leading-relaxed break-words">{result.reflexion}</p>
+                            {result?.pregunta_1 && (
+                              <p className="text-blue-700 font-semibold mb-2">{result.pregunta_1}</p>
+                            )}
+                            {result?.pregunta_2 && (
+                              <p className="text-blue-700 font-semibold mb-2">{result.pregunta_2}</p>
+                            )}
+                            <p className="text-gray-700 leading-relaxed break-words">{result.reflexion || result.reflexion}</p>
                         </div>
                     </div>
                 </div>

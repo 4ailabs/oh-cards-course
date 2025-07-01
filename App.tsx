@@ -6,7 +6,7 @@ import Included from './components/Included';
 import Investment from './components/Investment';
 import Audience from './components/Audience';
 import InteractiveDemo from './components/InteractiveDemo';
-import Testimonials from './components/Testimonials';
+import Testimonials from './src/components/Testimonials';
 import Cta from './components/Cta';
 
 const App: React.FC = () => {

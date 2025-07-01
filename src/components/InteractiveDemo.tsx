@@ -192,19 +192,21 @@ const InteractiveDemo: React.FC = () => {
         </div>
         
         <div className="max-w-4xl mx-auto">
-          {isLimitReached ? (
-             <div className="bg-amber-100 border-l-4 border-amber-500 text-amber-800 p-4 rounded-md flex items-start sm:items-center gap-3 max-w-xl mx-auto mb-8" role="status">
-                <Info size={40} className="flex-shrink-0 text-amber-600 hidden sm:block" />
-                <div>
-                  <p className="font-bold">Límite de demostración alcanzado</p>
-                  <p className="text-sm">Has utilizado tus 3 reflexiones. Para continuar tu viaje de autodescubrimiento, <a href="#inscripciones" className="underline font-semibold hover:text-amber-900">inscríbete en el taller completo</a>.</p>
-                </div>
+          {isLimitReached && (
+            <div className="flex items-start gap-3 bg-orange-100 border-2 border-orange-400 shadow-lg rounded-lg p-4 sm:p-5 mb-10 mt-2 animate-fadeInUp">
+              <div className="flex-shrink-0 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" /></svg>
+              </div>
+              <div>
+                <div className="font-bold text-orange-800 text-lg mb-1">Límite de demostración alcanzado</div>
+                <div className="text-orange-900 text-sm sm:text-base">Has utilizado tus 3 reflexiones. Para continuar tu viaje de autodescubrimiento, <a href="#inscripciones" className="underline font-semibold text-orange-700 hover:text-orange-900">inscríbete en el taller completo</a>.</div>
+              </div>
             </div>
-          ) : (
-            <p className="text-center text-gray-500 mb-4 text-sm">
-                Te quedan <span className="font-bold text-gray-700">{MAX_ATTEMPTS - attempts}</span> de {MAX_ATTEMPTS} reflexiones.
-            </p>
           )}
+
+          <p className="text-center text-gray-500 mb-4 text-sm">
+              Te quedan <span className="font-bold text-gray-700">{MAX_ATTEMPTS - attempts}</span> de {MAX_ATTEMPTS} reflexiones.
+          </p>
 
           <form onSubmit={handleGenerate} className="flex flex-col sm:flex-row gap-3 mb-8 max-w-xl mx-auto">
             <input
@@ -274,6 +276,7 @@ const InteractiveDemo: React.FC = () => {
           )}
         </div>
       </div>
+      <hr className="border-t-2 border-orange-200 my-12" />
       <style>{`
         @keyframes fadeInUp {
           from { opacity: 0; transform: translateY(20px); }

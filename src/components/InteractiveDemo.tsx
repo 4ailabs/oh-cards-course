@@ -238,11 +238,11 @@ const InteractiveDemo: React.FC = () => {
           )}
 
           {result && selectedImageUrl && (
-            <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 border border-gray-200 transition-all duration-500 animate-fadeInUp" aria-live="polite">
-                <div className="grid md:grid-cols-5 gap-8 items-start">
+            <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 sm:p-8 border border-gray-200 transition-all duration-500 animate-fadeInUp mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8 items-start">
                     {/* Image Card Column */}
-                    <div className="md:col-span-3">
-                        <div className="bg-sky-50 p-3 sm:p-4 rounded-lg border border-sky-200 flex flex-col shadow-sm">
+                    <div className="md:col-span-3 flex justify-center mb-4 md:mb-0">
+                        <div className="bg-sky-50 p-3 sm:p-4 rounded-lg border border-sky-200 flex flex-col shadow-sm w-full max-w-[220px] mx-auto aspect-[3/4]">
                             <h3 className="font-bold text-sm uppercase tracking-wider text-sky-700 mb-3 flex items-center gap-2 self-center"><ImageIcon size={16} /> Carta de Imagen</h3>
                             <div className="rounded-md overflow-hidden shadow-md max-w-[220px] mx-auto aspect-[3/4]">
                                 <img 
@@ -260,14 +260,13 @@ const InteractiveDemo: React.FC = () => {
                         <div className="bg-amber-50 p-4 rounded-lg border border-amber-200 flex flex-col text-center shadow-sm">
                             <h3 className="font-bold text-sm uppercase tracking-wider text-amber-700 mb-2 flex items-center gap-2 self-center"><Wand2 size={16} /> Palabra Clave</h3>
                             <div className="flex-grow flex items-center justify-center min-h-[100px]">
-                                <p className="text-4xl font-bold text-[#5D4333]">{result.palabra}</p>
+                                <p className="text-4xl font-bold text-[#5D4333] break-words">{result.palabra}</p>
                             </div>
                         </div>
-                        
                         {/* Reflection */}
-                        <div>
+                        <div className="bg-white p-4 rounded-md border border-gray-200 shadow-sm mb-2">
                             <h3 className="font-bold text-xl text-[#5D4333] mb-3">Reflexión para ti:</h3>
-                            <p className="text-gray-700 leading-relaxed bg-gray-100 p-4 rounded-md border border-gray-200">{result.reflexion}</p>
+                            <p className="text-gray-700 leading-relaxed break-words">{result.reflexion}</p>
                         </div>
                     </div>
                 </div>

@@ -3,31 +3,34 @@ import { Phone } from 'lucide-react';
 
 const PaypalButton: React.FC = () => {
   useEffect(() => {
-    // @ts-ignore
-    const w: any = window;
+    const renderPaypal = () => {
+      // @ts-ignore
+      const w: any = window;
+      if (w.paypal) {
+        w.paypal.HostedButtons({
+          hostedButtonId: "A9A69DGQTJMFE"
+        }).render("#paypal-container-A9A69DGQTJMFE");
+      }
+    };
     if (!document.getElementById('paypal-sdk')) {
       const script = document.createElement('script');
       script.src = "https://www.paypal.com/sdk/js?client-id=BAA4lz8UNfCxgze9nsnUqpXK2pwKSqxS2KsFHxp7hoLp0mYZJJJcaEFLqoigy1UiObcu496B4rs1kL2zLk&components=hosted-buttons&disable-funding=venmo&currency=MXN";
       script.id = "paypal-sdk";
       script.async = true;
       script.crossOrigin = "anonymous";
-      script.onload = () => {
-        if (w.paypal) {
-          w.paypal.HostedButtons({
-            hostedButtonId: "A9A69DGQTJMFE"
-          }).render("#paypal-container-A9A69DGQTJMFE");
-        }
-      };
+      script.onload = renderPaypal;
       document.body.appendChild(script);
     } else {
-      if (w.paypal) {
-        w.paypal.HostedButtons({
-          hostedButtonId: "A9A69DGQTJMFE"
-        }).render("#paypal-container-A9A69DGQTJMFE");
-      }
+      renderPaypal();
     }
   }, []);
-  return <div id="paypal-container-A9A69DGQTJMFE" className="mt-6 flex justify-center" style={{ minWidth: 320, minHeight: 120 }}></div>;
+  return (
+    <div
+      id="paypal-container-A9A69DGQTJMFE"
+      className="mt-6 flex justify-center"
+      style={{ minWidth: 320, maxWidth: 400, margin: '0 auto' }}
+    ></div>
+  );
 };
 
 const Cta: React.FC = () => {

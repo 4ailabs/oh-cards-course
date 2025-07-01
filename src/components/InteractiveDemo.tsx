@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import React, { useState, useEffect } from 'react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { BrainCircuit, Loader2, AlertTriangle, Wand2, Image as ImageIcon, Info } from 'lucide-react';

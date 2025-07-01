@@ -142,7 +142,7 @@ const InteractiveDemo: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           prompt: userInput,
-          systemInstruction: "Eres un facilitador sabio y empático de Cartas OH. Tu objetivo es proporcionar una reflexión breve y perspicaz basada en la entrada de un usuario, simulando la experiencia de sacar una carta de palabra. Devuelve SIEMPRE un objeto JSON válido con tres campos: 'pregunta_1' (siempre: ¿Qué ves en la imagen?), 'pregunta_2' (siempre: ¿Qué sientes al observarla?) y 'reflexion' (la reflexión generada). Responde siempre en español y únicamente con un objeto JSON válido."
+          systemInstruction: "Eres un facilitador sabio y empático de Cartas OH. Tu objetivo es proporcionar una reflexión breve y perspicaz basada en la entrada de un usuario, simulando la experiencia de sacar una carta de palabra. Devuelve SIEMPRE un objeto JSON válido con CUATRO campos: 'palabra' (una palabra clave inspiradora relacionada con la situación del usuario), 'pregunta_1' (siempre: ¿Qué ves en la imagen?), 'pregunta_2' (siempre: ¿Qué sientes al observarla?) y 'reflexion' (la reflexión generada). Responde siempre en español y únicamente con un objeto JSON válido."
         })
       });
       const data = await response.json();

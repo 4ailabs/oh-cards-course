@@ -152,14 +152,22 @@ const InteractiveDemo: React.FC = () => {
       } catch {
         jsonStr = '';
       }
-      const fenceRegex = /^```(\w*)?\s*\n?(.*?)\n?\s*```$/s;
+      // Regex robusto para bloques de código con o sin "json"
+      const fenceRegex = /^```(?:json)?\s*([\s\S]*?)\s*```$/i;
       const match = jsonStr.match(fenceRegex);
-      if (match && match[2]) {
-        jsonStr = match[2].trim();
+      if (match && match[1]) {
+        jsonStr = match[1].trim();
       }
       if (!jsonStr) throw new Error('Respuesta vacía de Gemini');
-      const parsedData: DemoResult = JSON.parse(jsonStr);
-      setResult(parsedData);
+      let parsedData: DemoResult | null = null;
+      try {
+        parsedData = JSON.parse(jsonStr);
+        setResult(parsedData);
+      } catch (e) {
+        setError("No se pudo interpretar la reflexión generada. Intenta de nuevo.");
+        console.error("Error al parsear reflexión:", e, jsonStr);
+        return;
+      }
 
       const randomImage = imageUrls[Math.floor(Math.random() * imageUrls.length)];
       setSelectedImageUrl(randomImage);

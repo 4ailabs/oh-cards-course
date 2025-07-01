@@ -184,8 +184,7 @@ const InteractiveDemo: React.FC = () => {
     <section className="py-16 sm:py-20 md:py-24 bg-gray-50">
       <div className="max-w-6xl mx-auto px-5">
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-blue-700 flex items-center gap-3 justify-center">
-            <BrainCircuit size={40} className="text-amber-500" />
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-blue-700 tracking-wide text-center">
             Experimenta el Poder de las OH Cards
           </h2>
           <p className="text-base sm:text-lg max-w-2xl mx-auto text-gray-600">

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Phone } from 'lucide-react';
 
 const Cta: React.FC = () => {

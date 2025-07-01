@@ -5,10 +5,6 @@ import { BrainCircuit, Loader2, AlertTriangle, Wand2, Image as ImageIcon, Info }
 
 // The list of OH card image URLs provided by the user.
 const imageUrls = [
-  'https://images.squarespace-cdn.com/content/v1/63937c55c3c2e84a13a3ede9/6ebb56eb-9e9c-4408-82fd-a498bcee533f/1.jpg?format=300w',
-  'https://images.squarespace-cdn.com/content/v1/63937c55c3c2e84a13a3ede9/92f5b738-4ea1-4f78-a340-4804bf15e12c/86.jpg?format=300w',
-  'https://images.squarespace-cdn.com/content/v1/63937c55c3c2e84a13a3ede9/27735b51-2388-43b5-a8ac-37f6d9140f8d/87.jpg?format=300w',
-  'https://images.squarespace-cdn.com/content/v1/63937c55c3c2e84a13a3ede9/eff4225d-fbf4-4bcc-b490-b23fe350c795/88.jpg?format=300w',
   'https://images.squarespace-cdn.com/content/v1/63937c55c3c2e84a13a3ede9/6ecef946-b9e4-446f-b6cf-59730fa0e7ef/84.jpg?format=300w',
   'https://images.squarespace-cdn.com/content/v1/63937c55c3c2e84a13a3ede9/a73b1baf-4efe-4313-9a53-45dca6d6ce3b/80.jpg?format=300w',
   'https://images.squarespace-cdn.com/content/v1/63937c55c3c2e84a13a3ede9/ed35919f-421b-4f0f-9b48-111de14494b1/82.jpg?format=300w',

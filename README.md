@@ -1,64 +1,82 @@
 # Taller Online de OH Cards
 
-This is a landing page for an online workshop on OH Cards, projective tools for professional and personal development. The project is built with React, TypeScript, Vite, and Tailwind CSS, and uses the Google Gemini API for an interactive demo.
+Esta es una landing page para un taller online de OH Cards, herramientas proyectivas para el desarrollo profesional y personal. El proyecto está construido con React, TypeScript, Vite y Tailwind CSS, y utiliza la API de Google Gemini a través de una función serverless segura.
 
-## Features
+## Características
 
--   **Responsive Design**: Looks great on all devices.
--   **Interactive Demo**: A unique section powered by the Google Gemini API that allows users to experience a mini-OH-Card session.
--   **Modern Tech Stack**: Built with Vite for a fast development experience.
--   **Styled with Tailwind CSS**: For rapid and consistent UI development.
--   **Ready for Deployment**: Configured for easy deployment on Vercel.
+-   **Diseño responsivo**: Se adapta a todos los dispositivos.
+-   **Demo interactiva**: Sección única impulsada por la API de Google Gemini, permitiendo experimentar una mini-sesión OH Cards.
+-   **Stack moderno**: Construido con Vite para una experiencia de desarrollo rápida.
+-   **Estilizado con Tailwind CSS**: Para un desarrollo de UI ágil y consistente.
+-   **Despliegue seguro**: La clave de Gemini nunca se expone al frontend, solo se usa en el backend/serverless.
+
+## Seguridad de la clave API
+
+- **La clave de Gemini NUNCA debe estar en el frontend ni en archivos públicos.**
+- Se utiliza una función serverless (`/api/gemini`) para proteger la clave y hacer las llamadas a la API de Gemini desde el backend.
+- La variable de entorno debe llamarse `GEMINI_API_KEY` y solo se define en el entorno de Vercel o en tu `.env` local (que debe estar en `.gitignore`).
+- Proporciona un archivo `.env.example` para referencia, pero nunca subas tu clave real.
 
 ## Getting Started
 
-### Prerequisites
+### Prerequisitos
 
--   Node.js (v18 or newer)
--   npm or yarn or pnpm
--   A Google Gemini API Key
+-   Node.js (v18 o superior)
+-   npm, yarn o pnpm
+-   Una clave de API de Google Gemini
 
-### Installation & Local Development
+### Instalación y desarrollo local
 
-1.  **Clone the repository:**
+1.  **Clona el repositorio:**
     ```bash
     git clone https://github.com/your-username/oh-cards-workshop.git
     cd oh-cards-workshop
     ```
 
-2.  **Install dependencies:**
+2.  **Instala las dependencias:**
     ```bash
     npm install
     ```
 
-3.  **Set up environment variables:**
-    Create a `.env.local` file in the root of the project and add your Google Gemini API key:
+3.  **Configura las variables de entorno:**
+    Crea un archivo `.env` (o `.env.local`) en la raíz del proyecto y agrega tu clave de Gemini:
     ```
-    VITE_API_KEY=your_gemini_api_key_here
+    GEMINI_API_KEY=your_gemini_api_key_here
     ```
+    > **Nunca subas tu archivo `.env` al repositorio. Usa `.env.example` como referencia.
 
-4.  **Run the development server:**
+4.  **Ejecuta el servidor de desarrollo:**
     ```bash
     npm run dev
     ```
-    Open `http://localhost:5173` (or the port shown in your terminal) to view it in the browser.
+    Abre `http://localhost:5173` para ver la app en el navegador.
 
-## Build for Production
+## Build para producción
 
-To create a production-ready build of the application:
+Para crear un build listo para producción:
 ```bash
 npm run build
 ```
-This will generate a `dist` folder with the optimized static assets. You can preview the production build locally with `npm run preview`.
+Esto generará la carpeta `dist` con los assets optimizados. Puedes previsualizar el build con `npm run preview`.
 
-## Deployment on Vercel
+## Despliegue en Vercel
 
-This project is optimized for deployment on Vercel.
+Este proyecto está optimizado para Vercel y usa una función serverless para proteger la clave de Gemini.
 
-1.  Push your code to a GitHub repository.
-2.  Import the project into Vercel from your GitHub repository.
-3.  Vercel will automatically detect that this is a Vite project and configure the build settings correctly (`vite build` command and `dist` output directory).
-4.  Add your Gemini API Key as an environment variable in the Vercel project settings:
-    -   **Name**: `VITE_API_KEY`
+1.  Sube tu código a un repositorio de GitHub.
+2.  Importa el proyecto en Vercel desde tu repositorio.
+3.  Vercel detectará automáticamente el proyecto Vite y la función serverless en `/api/gemini`.
+4.  Agrega tu clave de Gemini como variable de entorno en Vercel:
+    -   **Name**: `GEMINI_API_KEY`
     -   **Value**: `your_gemini_api_key_here`
-5.  Deploy! Vercel will build and deploy your site.
+5.  ¡Haz deploy! Vercel construirá y desplegará tu sitio de forma segura.
+
+## Ejemplo de archivo `.env.example`
+
+```
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+---
+
+**Recuerda:** Nunca expongas tu clave real en archivos públicos ni en el frontend. Usa siempre la función serverless para proteger tus secretos.

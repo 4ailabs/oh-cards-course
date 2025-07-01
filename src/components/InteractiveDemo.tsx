@@ -244,11 +244,11 @@ const InteractiveDemo: React.FC = () => {
                     <div className="md:col-span-3">
                         <div className="bg-sky-50 p-3 sm:p-4 rounded-lg border border-sky-200 flex flex-col shadow-sm">
                             <h3 className="font-bold text-sm uppercase tracking-wider text-sky-700 mb-3 flex items-center gap-2 self-center"><ImageIcon size={16} /> Carta de Imagen</h3>
-                            <div className="rounded-md overflow-hidden shadow-md">
+                            <div className="rounded-md overflow-hidden shadow-md max-w-[220px] mx-auto aspect-[3/4]">
                                 <img 
                                     src={selectedImageUrl} 
                                     alt="Imagen simbólica de una carta OH" 
-                                    className="w-full h-auto object-cover rounded-md aspect-square transition-transform duration-300 hover:scale-105"
+                                    className="w-full h-full object-cover rounded-md transition-transform duration-300 hover:scale-105"
                                 />
                             </div>
                         </div>

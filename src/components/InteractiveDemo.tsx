@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 import React, { useState, useEffect } from 'react';
-import { BrainCircuit, Loader2, AlertTriangle, Wand2, Image as ImageIcon } from 'lucide-react';
+import { Loader2, AlertTriangle, Wand2, Image as ImageIcon } from 'lucide-react';
 
 // Forzar build: cambio menor para asegurar despliegue correcto
 

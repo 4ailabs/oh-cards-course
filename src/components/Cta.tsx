@@ -75,7 +75,8 @@ const Cta: React.FC = () => {
                     </div>
                 </div>
                 <footer className="mt-8 text-center text-xs text-gray-400">
-                  Desarrollador: Dr. Miguel Ojeda Rios. 4ailabs
+                  Desarrollador: Dr. Miguel Ojeda Rios. 4ailabs<br />
+                  <a href="https://www.institutocentrobioenergetica.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline hover:text-blue-800">www.institutocentrobioenergetica.com</a>
                 </footer>
             </div>
         </section>

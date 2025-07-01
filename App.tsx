@@ -7,7 +7,7 @@ import Investment from './components/Investment';
 import Audience from './components/Audience';
 import InteractiveDemo from './src/components/InteractiveDemo';
 import Testimonials from './src/components/Testimonials';
-import Cta from './components/Cta';
+import Cta from './src/components/Cta';
 
 const App: React.FC = () => {
     return (

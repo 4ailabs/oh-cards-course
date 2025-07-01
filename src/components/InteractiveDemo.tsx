@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 import React, { useState, useEffect } from 'react';
-import { BrainCircuit, Loader2, AlertTriangle, Wand2, Image as ImageIcon, Info } from 'lucide-react';
+import { BrainCircuit, Loader2, AlertTriangle, Wand2, Image as ImageIcon } from 'lucide-react';
 
 // The list of OH card image URLs provided by the user.
 const imageUrls = [

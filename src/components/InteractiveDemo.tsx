@@ -272,8 +272,8 @@ const InteractiveDemo: React.FC = () => {
                         {/* Word Card */}
                         <div className="bg-amber-50 p-4 rounded-lg border border-amber-200 flex flex-col text-center shadow-sm">
                             <h3 className="font-bold text-sm uppercase tracking-wider text-amber-700 mb-2 flex items-center gap-2 self-center"><Wand2 size={16} /> Palabra Clave</h3>
-                            <div className="flex-grow flex items-center justify-center min-h-[100px]">
-                                <p className="text-4xl font-bold text-[#5D4333] break-words">{result.palabra}</p>
+                            <div className="flex-grow flex items-center justify-center min-h-[60px] sm:min-h-[100px]">
+                                <p className="text-2xl sm:text-4xl font-bold text-[#5D4333] break-words break-all whitespace-pre-line w-full max-w-full overflow-auto" style={{wordBreak: 'break-word'}}>{result.palabra}</p>
                             </div>
                         </div>
                         {/* Reflection */}
